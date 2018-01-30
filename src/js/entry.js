@@ -1,30 +1,45 @@
-// const _ = require('lodash');
 import _ from 'lodash';
-
-/*function component() {
-    var element = document.createElement('div');
-
-       // Lodash, currently included via a script, is required for this line to work
-        // Lodash, now imported by this script
-        element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-        if (process.env.NODE_ENV != 'production') {
-            console.log('env', 'test');
-        }
-    return element;
-}*/
+import Icon from '../images/d5.jpeg';
 
 let myComponent = () => {
-    var element = document.createElement('div');
+    var el = document.createElement('div');
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    let img = createImage(Icon);
+    img
+        .then((res) => {
+            document.querySelector("body").appendChild(res);
+            console.log('444--------------', res);
+        })
+        .catch((err) => {
+            console.log('error', err);
+        })
 
-    if (process.env.NODE_ENV != 'production') {
+
+    console.log('222--------------');
+    el.innerHTML = _.join(['Hello', 'webpack'], ' ');
+
+/*    if (process.env.NODE_ENV != 'production') {
         console.log('env', 'test');
-    }
+    }*/
 
-    return element;
+    return el;
+}
+
+let createImage = (Icon) => {
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.src = Icon;
+
+        image.onload = () => {
+            resolve(image);
+            console.log('333--------------');
+        };
+
+        image.onerror = () => {
+            reject('create image error');
+        }
+        console.log('111--------------');
+    });
 }
 
 document.querySelector("body").appendChild(myComponent());
-// document.querySelector("#root").appendChild(component());

@@ -18,6 +18,24 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
 
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                ]
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg)$/,
+                use: [
+                    'file-loader'
+                ]
+            }
+        ]
+    },
+
     plugins: [
         new CleanWebpackPlugin(pathsToClean),                   /*清理旧文件*/
         new HtmlWebpackPlugin({title: 'Webpack'}),    /*生成html*/
