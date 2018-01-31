@@ -1,8 +1,13 @@
 import _ from 'lodash';
 import Icon from '../images/d5.jpeg';
+import {asyncAll, asyncSingle} from './another.js'
 
 let myComponent = () => {
     var el = document.createElement('div');
+
+    asyncAll().then((res)=> {
+        console.log('res', res);
+    });
 
     let img = createImage(Icon);
     img
